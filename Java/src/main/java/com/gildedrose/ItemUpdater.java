@@ -8,10 +8,9 @@ public interface ItemUpdater {
   default void updateItem(Item item) {
     if (!item.getName().equals(GildedRose.AGED_BRIE)
         && !item.getName().equals(GildedRose.BACKSTAGE_PASS)) {
+      if (item.getName().equals(GildedRose.SULFURAS)) return;
       if (item.getQuality() > 0) {
-        if (!item.getName().equals(GildedRose.SULFURAS)) {
-          item.setQuality(this.updateQuality(item.getQuality(), -1));
-        }
+        item.setQuality(this.updateQuality(item.getQuality(), -1));
       }
     } else {
       if (item.getQuality() < 50) {
