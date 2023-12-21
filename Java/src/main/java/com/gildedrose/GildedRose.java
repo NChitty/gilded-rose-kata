@@ -3,9 +3,13 @@ package com.gildedrose;
 import com.gildedrose.updater.ItemUpdater;
 import com.gildedrose.updater.ItemUpdaterFactory;
 import java.util.HashMap;
-import java.util.Map;
 
 class GildedRose {
+  static final String AGED_BRIE = "Aged Brie";
+  static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+  static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+  static final String CONJURED = "Conjured Mana Cake";
+
   private final Item[] items;
   private final HashMap<String, ItemUpdater> itemUpdaters;
   private final ItemUpdater defaultUpdater;
@@ -18,10 +22,6 @@ class GildedRose {
     this.itemUpdaters.put(BACKSTAGE_PASS, ItemUpdaterFactory.buildSpecialEventUpdater());
     this.defaultUpdater = ItemUpdaterFactory.buildUpdater();
   }
-
-  static final String AGED_BRIE = "Aged Brie";
-  static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
-  static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
   public void updateQuality() {
     for (int i = 0; i < items.length; i++) {
