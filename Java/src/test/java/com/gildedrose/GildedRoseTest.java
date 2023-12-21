@@ -81,7 +81,7 @@ class GildedRoseTest {
   class WhenAgedItem {
     @Test
     void givenAgedBrie_thenQualityIncreases() {
-      Item item = new Item("Aged Brie", 1, 0);
+      Item item = new Item(GildedRose.AGED_BRIE, 1, 0);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(1, item.getQuality());
@@ -100,7 +100,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = { 50, 51, 52, 53, 54, 60, 100, 1000, Integer.MAX_VALUE })
     void givenQualityIsFiftyOrGreater_thenQualityUnchanged(int quality) {
-      Item item = new Item("Aged Brie", 1, quality);
+      Item item = new Item(GildedRose.AGED_BRIE, 1, quality);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(quality, item.getQuality());
@@ -110,7 +110,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @CsvSource(value = {"0,50", "0,51", "-1,50", "-1,51"})
     void givenSellInZeroOrLess_thenQualityUnchanged(int sellIn, int quality) {
-      Item item = new Item("Aged Brie", sellIn, quality);
+      Item item = new Item(GildedRose.AGED_BRIE, sellIn, quality);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(quality, item.getQuality());
@@ -122,7 +122,7 @@ class GildedRoseTest {
   class WhenLegendaryItem {
     @Test
     void givenSulfuras_thenRemainUnchanged() {
-      Item item = new Item("Sulfuras, Hand of Ragnaros", 1, 1);
+      Item item = new Item(GildedRose.SULFURAS, 1, 1);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(1, item.getQuality());
@@ -132,7 +132,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = {1, -1, 10, -10, Integer.MAX_VALUE, Integer.MIN_VALUE})
     void givenVariousSellIn_thenRemainUnchanged(int sellIn) {
-      Item item = new Item("Sulfuras, Hand of Ragnaros", sellIn, 1);
+      Item item = new Item(GildedRose.SULFURAS, sellIn, 1);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(1, item.getQuality());
@@ -142,7 +142,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = {1, -1, 10, -10, Integer.MAX_VALUE, Integer.MIN_VALUE})
     void givenVariousQualities_thenRemainUnchanged(int quality) {
-      Item item = new Item("Sulfuras, Hand of Ragnaros", 1, quality);
+      Item item = new Item(GildedRose.SULFURAS, 1, quality);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(quality, item.getQuality());
@@ -154,7 +154,7 @@ class GildedRoseTest {
   class WhenSpecialtyItem {
     @Test
     void givenBackStagePass_thenQualityIncreases() {
-      Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 1);
+      Item item = new Item(GildedRose.BACKSTAGE_PASS, 10, 1);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(3, item.getQuality());
@@ -164,7 +164,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = {11, 12, 13, 14, 15, 100, 1000, Integer.MAX_VALUE})
     void givenSellInGreaterThanTen_thenQualityIncreasesByOne(int sellIn) {
-      Item item = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, 0);
+      Item item = new Item(GildedRose.BACKSTAGE_PASS, sellIn, 0);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(1, item.getQuality());
@@ -174,7 +174,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = {10, 9, 8, 7, 6})
     void givenSellInLessThanEqualTenAndGreaterThan5_thenQualityIncreasesByTwo(int sellIn) {
-      Item item = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, 0);
+      Item item = new Item(GildedRose.BACKSTAGE_PASS, sellIn, 0);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(2, item.getQuality());
@@ -184,7 +184,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = {5, 4, 3, 2, 1})
     void givenSellInLessThanEqualFive_thenQualityIncreasesByThree(int sellIn) {
-      Item item = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, 0);
+      Item item = new Item(GildedRose.BACKSTAGE_PASS, sellIn, 0);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(3, item.getQuality());
@@ -194,7 +194,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -2, -10, -100, Integer.MIN_VALUE})
     void givenSellInLessThanEqualZero_thenQualityClampedToZero(int sellIn) {
-      Item item = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, -1);
+      Item item = new Item(GildedRose.BACKSTAGE_PASS, sellIn, -1);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(0, item.getQuality());
@@ -204,7 +204,7 @@ class GildedRoseTest {
     @ParameterizedTest
     @ValueSource(ints = { 50, 51, 52, 53, 54, 60, 100, 1000, Integer.MAX_VALUE })
     void givenQualityIsFiftyOrGreater_thenQualityUnchanged(int quality) {
-      Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 1, quality);
+      Item item = new Item(GildedRose.BACKSTAGE_PASS, 1, quality);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(quality, item.getQuality());
