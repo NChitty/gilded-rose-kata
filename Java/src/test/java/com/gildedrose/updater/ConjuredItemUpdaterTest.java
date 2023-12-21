@@ -20,6 +20,6 @@ public class ConjuredItemUpdaterTest {
     Item item = new Item("this doesn't matter anymore", 0, 4);
     itemUpdater.updateItem(item);
     assertEquals(0, item.getQuality());
-    assertEquals(0, item.getSellIn());
+    assertEquals(-1, item.getSellIn());
   }
 }
