@@ -20,17 +20,13 @@ public interface ItemUpdater {
         item.setQuality(this.updateQuality(item.getQuality(), 1));
 
         if (item.getName().equals(GildedRose.BACKSTAGE_PASS)) {
-          if (item.getSellIn() < 11) {
-            if (item.getQuality() < 50) {
-              item.setQuality(this.updateQuality(item.getQuality(), 1));
-            }
-          }
+          if (item.getSellIn() >= 10) return;
+          if (item.getQuality() >= 50) return;
+          item.setQuality(this.updateQuality(item.getQuality(), 1));
 
-          if (item.getSellIn() < 6) {
-            if (item.getQuality() < 50) {
-              item.setQuality(this.updateQuality(item.getQuality(), 1));
-            }
-          }
+          if (item.getSellIn() >= 5) return;
+          if (item.getQuality() >= 50) return;
+          item.setQuality(this.updateQuality(item.getQuality(), 1));
         }
       }
     }
