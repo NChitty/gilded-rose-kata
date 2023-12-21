@@ -13,7 +13,6 @@ public interface ItemUpdater {
 
     if (!item.getName().equals(GildedRose.AGED_BRIE)
         && !item.getName().equals(GildedRose.BACKSTAGE_PASS)) {
-      if (item.getName().equals(GildedRose.SULFURAS)) return;
       item.setQuality(this.updateQuality(item.getQuality(), -1));
     } else {
       if (item.getQuality() < 50) {
@@ -32,8 +31,8 @@ public interface ItemUpdater {
     }
 
     if (item.getSellIn() >= 0) return;
+    if (item.getQuality() >= 50) return;
     if (item.getName().equals(GildedRose.AGED_BRIE)) {
-      if (item.getQuality() >= 50) return;
       item.setQuality(this.updateQuality(item.getQuality(), 1));
       return;
     }
