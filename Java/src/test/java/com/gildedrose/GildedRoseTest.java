@@ -212,4 +212,26 @@ class GildedRoseTest {
       assertEquals(0, item.getSellIn());
     }
   }
+
+  @Nested
+  class WhenConjuredItem {
+
+    @Test
+    void givenBeforeSellIn_thenQualityDecreasesDouble() {
+      Item item = new Item(GildedRose.CONJURED, 1, 2);
+      GildedRose app = new GildedRose(new Item[] { item });
+      app.updateQuality();
+      assertEquals(0, item.getQuality());
+      assertEquals(0, item.getSellIn());
+    }
+
+    @Test
+    void givenAfterSellIn_thenQualityDecreasesDouble() {
+      Item item = new Item(GildedRose.CONJURED, 0, 4);
+      GildedRose app = new GildedRose(new Item[] { item });
+      app.updateQuality();
+      assertEquals(0, item.getQuality());
+      assertEquals(-1, item.getSellIn());
+    }
+  }
 }

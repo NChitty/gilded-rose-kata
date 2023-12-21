@@ -20,6 +20,7 @@ class GildedRose {
     this.itemUpdaters.put(SULFURAS, ItemUpdaterFactory.buildLegendaryUpdater());
     this.itemUpdaters.put(AGED_BRIE, ItemUpdaterFactory.buildAgedUpdater());
     this.itemUpdaters.put(BACKSTAGE_PASS, ItemUpdaterFactory.buildSpecialEventUpdater());
+    this.itemUpdaters.put(CONJURED, ItemUpdaterFactory.buildConjuredUpdater());
     this.defaultUpdater = ItemUpdaterFactory.buildUpdater();
   }
 

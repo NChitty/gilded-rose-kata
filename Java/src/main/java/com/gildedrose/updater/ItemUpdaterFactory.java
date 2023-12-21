@@ -16,4 +16,7 @@ public class ItemUpdaterFactory {
   public static ItemUpdater buildSpecialEventUpdater() {
     return new SpecialEventItemUpdater();
   }
+  public static ItemUpdater buildConjuredUpdater() {
+    return new ConjuredItemUpdater();
+  }
 }
