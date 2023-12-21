@@ -2,6 +2,8 @@ package com.gildedrose;
 
 public interface ItemUpdater {
   default int updateQuality(int current, int delta) {
+    if (current < 0) return current;
+
     return Math.max(0, current + delta);
   }
 
@@ -9,9 +11,7 @@ public interface ItemUpdater {
     if (!item.getName().equals(GildedRose.AGED_BRIE)
         && !item.getName().equals(GildedRose.BACKSTAGE_PASS)) {
       if (item.getName().equals(GildedRose.SULFURAS)) return;
-      if (item.getQuality() > 0) {
-        item.setQuality(this.updateQuality(item.getQuality(), -1));
-      }
+      item.setQuality(this.updateQuality(item.getQuality(), -1));
     } else {
       if (item.getQuality() < 50) {
         item.setQuality(this.updateQuality(item.getQuality(), 1));
