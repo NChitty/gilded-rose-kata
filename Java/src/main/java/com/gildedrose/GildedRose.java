@@ -1,17 +1,22 @@
 package com.gildedrose;
 
+import com.gildedrose.updater.ItemUpdater;
+import com.gildedrose.updater.ItemUpdaterFactory;
+import java.util.HashMap;
+import java.util.Map;
+
 class GildedRose {
   private final Item[] items;
-  private final ItemUpdater itemUpdater;
+  private final HashMap<String, ItemUpdater> itemUpdaters;
+  private final ItemUpdater defaultUpdater;
 
   public GildedRose(Item[] items) {
     this.items = items;
-    this.itemUpdater = new ItemUpdater() {
-      @Override
-      public void updateItem(Item item) {
-        ItemUpdater.super.updateItem(item);
-      }
-    };
+    this.itemUpdaters = new HashMap<>();
+    this.itemUpdaters.put(SULFURAS, ItemUpdaterFactory.buildLegendaryUpdater());
+    this.itemUpdaters.put(AGED_BRIE, ItemUpdaterFactory.buildAgedUpdater());
+    this.itemUpdaters.put(BACKSTAGE_PASS, ItemUpdaterFactory.buildSpecialEventUpdater());
+    this.defaultUpdater = ItemUpdaterFactory.buildUpdater();
   }
 
   static final String AGED_BRIE = "Aged Brie";
@@ -20,7 +25,8 @@ class GildedRose {
 
   public void updateQuality() {
     for (int i = 0; i < items.length; i++) {
-      this.itemUpdater.updateItem(items[ i ]);
+      String name = items[ i ].getName();
+      this.itemUpdaters.getOrDefault(name, defaultUpdater).updateItem(items[ i ]);
     }
   }
 
