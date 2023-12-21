@@ -8,6 +8,9 @@ public interface ItemUpdater {
   }
 
   default void updateItem(Item item) {
+    if (item.getName().equals(GildedRose.SULFURAS)) return;
+    item.setSellIn(item.getSellIn() - 1);
+
     if (!item.getName().equals(GildedRose.AGED_BRIE)
         && !item.getName().equals(GildedRose.BACKSTAGE_PASS)) {
       if (item.getName().equals(GildedRose.SULFURAS)) return;
@@ -30,10 +33,6 @@ public interface ItemUpdater {
           }
         }
       }
-    }
-
-    if (!item.getName().equals(GildedRose.SULFURAS)) {
-      item.setSellIn(item.getSellIn() - 1);
     }
 
     if (item.getSellIn() < 0) {
