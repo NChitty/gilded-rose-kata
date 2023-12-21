@@ -7,12 +7,16 @@ class GildedRose {
     this.items = items;
   }
 
+  static final String AGED_BRIE = "Aged Brie";
+  static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+  static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+
   public void updateQuality() {
     for (int i = 0; i < items.length; i++) {
-      if (!items[ i ].getName().equals("Aged Brie")
-          && !items[ i ].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+      if (!items[ i ].getName().equals(AGED_BRIE)
+          && !items[ i ].getName().equals(BACKSTAGE_PASS)) {
         if (items[ i ].getQuality() > 0) {
-          if (!items[ i ].getName().equals("Sulfuras, Hand of Ragnaros")) {
+          if (!items[ i ].getName().equals(SULFURAS)) {
             items[ i ].setQuality(items[ i ].getQuality() - 1);
           }
         }
@@ -20,7 +24,7 @@ class GildedRose {
         if (items[ i ].getQuality() < 50) {
           items[ i ].setQuality(items[ i ].getQuality() + 1);
 
-          if (items[ i ].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+          if (items[ i ].getName().equals(BACKSTAGE_PASS)) {
             if (items[ i ].getSellIn() < 11) {
               if (items[ i ].getQuality() < 50) {
                 items[ i ].setQuality(items[ i ].getQuality() + 1);
@@ -36,15 +40,15 @@ class GildedRose {
         }
       }
 
-      if (!items[ i ].getName().equals("Sulfuras, Hand of Ragnaros")) {
+      if (!items[ i ].getName().equals(SULFURAS)) {
         items[ i ].setSellIn(items[ i ].getSellIn() - 1);
       }
 
       if (items[ i ].getSellIn() < 0) {
-        if (!items[ i ].getName().equals("Aged Brie")) {
-          if (!items[ i ].getName().equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (!items[ i ].getName().equals(AGED_BRIE)) {
+          if (!items[ i ].getName().equals(BACKSTAGE_PASS)) {
             if (items[ i ].getQuality() > 0) {
-              if (!items[ i ].getName().equals("Sulfuras, Hand of Ragnaros")) {
+              if (!items[ i ].getName().equals(SULFURAS)) {
                 items[ i ].setQuality(items[ i ].getQuality() - 1);
               }
             }
