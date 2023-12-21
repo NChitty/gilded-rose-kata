@@ -88,13 +88,14 @@ class GildedRoseTest {
       assertEquals(0, item.getSellIn());
     }
 
-    @Test
-    void givenPassSellIn_thenQualityIncreasesDouble() {
-      Item item = new Item("Aged Brie", 0, 0);
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -2, -10, -100, Integer.MIN_VALUE})
+    void givenPastSellIn_thenQualityIncreasesDouble(int sellIn) {
+      Item item = new Item(GildedRose.AGED_BRIE, sellIn, 0);
       GildedRose app = new GildedRose(new Item[] { item});
       app.updateQuality();
       assertEquals(2, item.getQuality());
-      assertEquals(-1, item.getSellIn());
+      assertEquals(sellIn - 1, item.getSellIn());
     }
 
     @ParameterizedTest
