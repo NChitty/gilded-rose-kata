@@ -14,4 +14,12 @@ public class ConjuredItemUpdaterTest {
     assertEquals(0, item.getQuality());
     assertEquals(0, item.getSellIn());
   }
+
+  @Test
+  void givenAfterSellIn_thenQualityDecreasesDouble() {
+    Item item = new Item("this doesn't matter anymore", 0, 4);
+    itemUpdater.updateItem(item);
+    assertEquals(0, item.getQuality());
+    assertEquals(0, item.getSellIn());
+  }
 }
